@@ -11,6 +11,8 @@ namespace Catalogo
             public int Id { get; set; }
             public string Descripcion { get; set; }
 
+        // SobreEscribir Objeto //
+
             public override string ToString()
             {
                 return Descripcion;
