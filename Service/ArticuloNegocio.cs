@@ -21,7 +21,7 @@ namespace Catalogo
 
             try
             {
-
+                // Query //
                 conection.ConnectionString = "server=DESKTOP-6NCI6TM\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comand.CommandType = System.Data.CommandType.Text;
                 comand.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, ImagenUrl, A.Precio, A.IdMarca, A.IdCategoria\r\nFrom ARTICULOS A, CATEGORIAS C, MARCAS M \r\nwhere C.Id = A.IdCategoria and M.id = A.IdMarca";
@@ -57,7 +57,7 @@ namespace Catalogo
             }
 
         }
-
+        //ADD//
         public void agregar(Articulo nuevo)
         {
             DataAcces data = new DataAcces();
