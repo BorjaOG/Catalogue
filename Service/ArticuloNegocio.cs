@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Threading;
+using Domain;
+using Service;
 
 namespace Catalogo
 {
-     class ArticuloNegocio
+     public class ArticuloNegocio
     {
         public List<Articulo> listar()
         {
@@ -22,7 +24,7 @@ namespace Catalogo
 
                 conection.ConnectionString = "server=DESKTOP-6NCI6TM\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comand.CommandType = System.Data.CommandType.Text;
-                comand.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, ImagenUrl, A.Precio, A.IdMarca, A.IdCategoria From ARTICULOS A, CATEGORIAS C, MARCAS M where C.Id = A.IdCategoria AND A.IdCategoria = M.Id";
+                comand.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, ImagenUrl, A.Precio, A.IdMarca, A.IdCategoria\r\nFrom ARTICULOS A, CATEGORIAS C, MARCAS M \r\nwhere C.Id = A.IdCategoria and M.id = A.IdMarca";
                 comand.Connection = conection;
 
                 conection.Open();
@@ -55,5 +57,34 @@ namespace Catalogo
             }
 
         }
+
+        public void agregar(Articulo nuevo)
+        {
+            DataAcces data = new DataAcces();
+
+            try
+            {
+                data.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria) values ('"+ nuevo.Codigo +"','" + nuevo.Nombre + "','" + nuevo.Descripcion + "', @IdMarca, @IdCategoria)");
+                data.setearParametro("@IdMarca", nuevo.Marca.Id);
+                data.setearParametro("@IdCategoria", nuevo.Categoria.Id);
+                data.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.cerrarConection();
+            }
+        }
+
+        public void modificar (Articulo modificar)
+        {
+
+        }
+       
+        
     }
 }
