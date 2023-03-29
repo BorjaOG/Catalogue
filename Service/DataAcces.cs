@@ -58,7 +58,7 @@ namespace Service
             }
         }
 
-        //Parameter combobox//
+        
         public void setearParametro(string nombre, object valor)
         {
             comand.Parameters.AddWithValue(nombre, valor);

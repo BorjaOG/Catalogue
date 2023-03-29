@@ -26,18 +26,29 @@ namespace Catalogo
 
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            listaArticulos = negocio.listar();
-            dgvArticulos.DataSource = listaArticulos;
-            dgvArticulos.Columns["UrlImagen"].Visible = false;
-            pcbArticulo.Load(listaArticulos[0].UrlImagen);
-
+            cargar();
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
            Articulo selected = (Articulo) dgvArticulos.CurrentRow.DataBoundItem;
            loadImage(selected.UrlImagen);
+        }
+
+        private void cargar()
+        {
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                listaArticulos = negocio.listar();
+                dgvArticulos.DataSource = listaArticulos;
+                dgvArticulos.Columns["UrlImagen"].Visible = false;
+                pcbArticulo.Load(listaArticulos[0].UrlImagen);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void loadImage(string image)
@@ -57,6 +68,7 @@ namespace Catalogo
         {
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
+            cargar();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

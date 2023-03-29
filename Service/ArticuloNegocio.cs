@@ -36,7 +36,9 @@ namespace Catalogo
                     aux.Codigo = (string)reader["Codigo"];
                     aux.Nombre = (string)reader["Nombre"];
                     aux.Descripcion = (string)reader["Descripcion"];
-                    aux.UrlImagen = (string)reader["imagenUrl"];
+                    if (!(reader["ImagenUrl"] is DBNull))
+                        aux.UrlImagen = (string)reader["ImagenUrl"];
+                    
                     aux.Precio = (decimal)reader["Precio"];
                     aux.Marca = new Marca();
                     aux.Marca.Descripcion = (string)reader["Marca"];                   
@@ -64,7 +66,7 @@ namespace Catalogo
 
             try
             {
-                data.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria) values ('"+ nuevo.Codigo +"','" + nuevo.Nombre + "','" + nuevo.Descripcion + "', @IdMarca, @IdCategoria)");
+                data.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) values ('"+ nuevo.Codigo +"','" + nuevo.Nombre + "','" + nuevo.Descripcion + "', '" + nuevo.Precio + "', @IdMarca, @IdCategoria)");
                 data.setearParametro("@IdMarca", nuevo.Marca.Id);
                 data.setearParametro("@IdCategoria", nuevo.Categoria.Id);
                 data.ejecutarAccion();

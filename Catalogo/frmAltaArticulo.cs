@@ -35,6 +35,7 @@ namespace Catalogo
                 article.Codigo = (string)txtCodigo.Text;
                 article.Nombre = (string)txtNombre.Text;
                 article.Descripcion = (string)txtDescripcion.Text;
+                article.Precio = decimal.Parse(txtPrice.Text);
                 article.Marca = (Marca)cmbMarca.SelectedItem;
                 article.Categoria = (Categoria)cmbCategoria.SelectedItem;
 
