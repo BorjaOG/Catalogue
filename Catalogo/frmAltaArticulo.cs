@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Domain;
 using Catalogo;
 using Service;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Catalogo
 {
@@ -35,6 +36,7 @@ namespace Catalogo
                 article.Codigo = (string)txtCodigo.Text;
                 article.Nombre = (string)txtNombre.Text;
                 article.Descripcion = (string)txtDescripcion.Text;
+                article.UrlImagen = (string)txtUrl.Text;
                 article.Precio = decimal.Parse(txtPrice.Text);
                 article.Marca = (Marca)cmbMarca.SelectedItem;
                 article.Categoria = (Categoria)cmbCategoria.SelectedItem;
@@ -72,6 +74,23 @@ namespace Catalogo
             {
                MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void txtUrl_Leave(object sender, EventArgs e)
+        {
+            loadImage(txtUrl.Text);
+        }
+        private void loadImage(string image)
+        {
+            try
+            {
+                pcbArticulo.Load(image);
+            }
+            catch (Exception ex)
+            {
+                pcbArticulo.Load("https://worldwellnessgroup.org.au/wp-content/uploads/2020/07/placeholder.png");
+            }
+
         }
     }
 }

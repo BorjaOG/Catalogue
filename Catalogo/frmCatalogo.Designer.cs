@@ -63,7 +63,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(38, 331);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(165, 34);
-            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.TabIndex = 0;
             this.btnAgregar.Text = "Add new article";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -74,7 +74,7 @@
             this.btnClose.Location = new System.Drawing.Point(793, 331);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(147, 34);
-            this.btnClose.TabIndex = 3;
+            this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);

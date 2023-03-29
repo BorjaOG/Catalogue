@@ -33,18 +33,25 @@ namespace Catalogo
                 while (reader.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.Codigo = (string)reader["Codigo"];
-                    aux.Nombre = (string)reader["Nombre"];
-                    aux.Descripcion = (string)reader["Descripcion"];
+                    if (!(reader["Codigo"] is DBNull))
+                        aux.Codigo = (string)reader["Codigo"];
+                    if (!(reader["Nombre"] is DBNull))
+                        aux.Nombre = (string)reader["Nombre"];                    
+                    if (!(reader["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)reader["Descripcion"];
                     if (!(reader["ImagenUrl"] is DBNull))
                         aux.UrlImagen = (string)reader["ImagenUrl"];
-                    
-                    aux.Precio = (decimal)reader["Precio"];
+                  //  if (!(reader.IsDBNull(reader.GetOrdinal("Precio"))))//
+                    //    aux.Precio = (decimal)reader["Precio"];//
+
+
                     aux.Marca = new Marca();
                     aux.Marca.Descripcion = (string)reader["Marca"];                   
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)reader["Categoria"];
-                    
+
+                   
+
 
                     lista.Add(aux);
                  
@@ -66,7 +73,7 @@ namespace Catalogo
 
             try
             {
-                data.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) values ('"+ nuevo.Codigo +"','" + nuevo.Nombre + "','" + nuevo.Descripcion + "', '" + nuevo.Precio + "', @IdMarca, @IdCategoria)");
+                data.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, ImagenUrl, Precio, IdMarca, IdCategoria) values ('"+ nuevo.Codigo +"','" + nuevo.Nombre + "','" + nuevo.Descripcion + "', '" + nuevo.Precio + "','" + nuevo.UrlImagen +"', @IdMarca, @IdCategoria)");             
                 data.setearParametro("@IdMarca", nuevo.Marca.Id);
                 data.setearParametro("@IdCategoria", nuevo.Categoria.Id);
                 data.ejecutarAccion();
