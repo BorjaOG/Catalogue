@@ -40,6 +40,9 @@ namespace Catalogo
                         aux.Nombre = (string)reader["Nombre"];
                     if (!(reader["Descripcion"] is DBNull))
                         aux.Descripcion = (string)reader["Descripcion"];
+
+                    //validar DBnull de precio//
+
                     aux.Precio = (decimal)reader["Precio"];
                     aux.Marca = new Marca();
                     aux.Marca.Descripcion = (string)reader["Marca"];
