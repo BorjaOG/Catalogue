@@ -32,6 +32,7 @@
             this.pcbArticulo = new System.Windows.Forms.PictureBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbArticulo)).BeginInit();
             this.SuspendLayout();
@@ -79,11 +80,23 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnModify
+            // 
+            this.btnModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModify.Location = new System.Drawing.Point(239, 331);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(151, 34);
+            this.btnModify.TabIndex = 2;
+            this.btnModify.Text = "Modify article";
+            this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
             // frmCatalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 386);
+            this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pcbArticulo);
@@ -104,6 +117,7 @@
         private System.Windows.Forms.PictureBox pcbArticulo;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnModify;
     }
 }
 

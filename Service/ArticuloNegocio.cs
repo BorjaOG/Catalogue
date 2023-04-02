@@ -8,6 +8,7 @@ using System.Threading;
 using Domain;
 using Service;
 using System.Data.SqlTypes;
+using System.Xml.Schema;
 
 namespace Catalogo
 {
@@ -25,7 +26,7 @@ namespace Catalogo
                 // Query //
                 conection.ConnectionString = "server=DESKTOP-6NCI6TM\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comand.CommandType = System.Data.CommandType.Text;
-                comand.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, ImagenUrl, A.Precio, A.IdMarca, A.IdCategoria\r\nFrom ARTICULOS A, CATEGORIAS C, MARCAS M \r\nwhere C.Id = A.IdCategoria and M.id = A.IdMarca";
+                comand.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, ImagenUrl, A.Precio, A.IdMarca, A.IdCategoria, M.Id, C.Id\r\nFrom ARTICULOS A, CATEGORIAS C, MARCAS M \r\nwhere C.Id = A.IdCategoria and M.id = A.IdMarca";
                 comand.Connection = conection;
 
                 conection.Open();
@@ -42,13 +43,13 @@ namespace Catalogo
                         aux.Descripcion = (string)reader["Descripcion"];
                     if (!(reader["ImagenUrl"] is DBNull))
                         aux.UrlImagen = (string)reader["ImagenUrl"];
-
-                    //validar DBnull de precio//
-
+                    aux.Id = (int)reader["Id"];
                     aux.Precio = (decimal)reader["Precio"];
                     aux.Marca = new Marca();
+                    aux.Marca.Id = (int)reader["IdMarca"];
                     aux.Marca.Descripcion = (string)reader["Marca"];
                     aux.Categoria = new Categoria();
+                    aux.Categoria.Id = (int)reader["IdCategoria"];
                     aux.Categoria.Descripcion = (string)reader["Categoria"];
 
                     lista.Add(aux);
@@ -71,7 +72,7 @@ namespace Catalogo
 
             try
             {
-                string consulta = "insert into ARTICULOS (Codigo, Nombre, Descripcion, ImagenUrl, Precio, IdMarca, IdCategoria) " +
+                string consulta = "insert into ARTICULOS (Id,Codigo, Nombre, Descripcion, ImagenUrl, Precio, IdMarca, IdCategoria)" +
                                   "values (@Codigo, @Nombre, @Descripcion, @UrlImagen, @Precio, @IdMarca, @IdCategoria)";
 
                 data.setearConsulta(consulta);
@@ -82,6 +83,7 @@ namespace Catalogo
                 data.setearParametro("@Precio", nuevo.Precio);
                 data.setearParametro("@IdMarca", nuevo.Marca.Id);
                 data.setearParametro("@IdCategoria", nuevo.Categoria.Id);
+               
 
                 data.ejecutarAccion();
             }
@@ -96,9 +98,32 @@ namespace Catalogo
         }
 
 
-        public void modificar(Articulo modificar)
+        public void modificar(Articulo article)
         {
+                DataAcces data = new DataAcces();
+            try
+            {
+                data.setearConsulta("update ARTICULOS set Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, IdMarca = @IdMarca, IdCategoria = @IdCategoria, ImagenUrl = @ImagenUrl, Precio = @Precio where Id = @Id");
+                data.setearParametro("@Codigo", article.Codigo);
+                data.setearParametro("@Nombre", article.Nombre);
+                data.setearParametro("@Descripcion", article.Descripcion);
+                data.setearParametro("@IdMarca", article.Marca.Id);
+                data.setearParametro("@IdCategoria", article.Categoria.Id);
+                data.setearParametro("@ImagenUrl", article.UrlImagen);
+                data.setearParametro("@Precio", article.Precio);
+                data.setearParametro("@Id", article.Id);
 
+                data.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.cerrarConection();
+            }
         }
 
 

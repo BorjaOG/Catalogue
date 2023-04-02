@@ -32,19 +32,23 @@ namespace Catalogo
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-           Articulo selected = (Articulo) dgvArticulos.CurrentRow.DataBoundItem;
-           loadImage(selected.UrlImagen);
+            if (dgvArticulos.CurrentRow != null)
+            {
+                Articulo selected = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                loadImage(selected.UrlImagen);
+            }
         }
 
         private void cargar()
         {
+                ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                ArticuloNegocio negocio = new ArticuloNegocio();
                 listaArticulos = negocio.listar();
                 dgvArticulos.DataSource = listaArticulos;
                 dgvArticulos.Columns["UrlImagen"].Visible = false;
-                pcbArticulo.Load(listaArticulos[0].UrlImagen);
+                dgvArticulos.Columns["Id"].Visible = false;
+                loadImage(listaArticulos[0].UrlImagen);
             }
             catch (Exception ex)
             {
@@ -72,11 +76,27 @@ namespace Catalogo
             cargar();
         }
 
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+
+            
+            {
+                if (dgvArticulos.CurrentRow != null)
+                {
+                  Articulo selected;
+                  selected = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                  frmAltaArticulo modify = new frmAltaArticulo(selected);
+                  modify.ShowDialog();
+                  cargar();
+                    
+                }
+            }
+
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }
-
-
     }
 }
