@@ -16,20 +16,16 @@ namespace Service
         {
             get { return reader; }
         }
-
         public DataAcces()
         {
             conection = new SqlConnection("server=DESKTOP-6NCI6TM\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true");
             comand = new SqlCommand();
-
         }
-
         public void setearConsulta(string consulta)
         {
             comand.CommandType = System.Data.CommandType.Text;
             comand.CommandText = consulta;
         }
-
         public void ejecutarLectura()
         {
             comand.Connection = conection;
@@ -43,7 +39,6 @@ namespace Service
                 throw ex;
             }   
         }
-
         public void ejecutarAccion()
         {
                 comand.Connection = conection;
@@ -56,14 +51,11 @@ namespace Service
             {
                 throw ex;
             }
-        }
-
-        
+        }   
         public void setearParametro(string nombre, object valor)
         {
             comand.Parameters.AddWithValue(nombre, valor);
         }
-
         public void cerrarConection()
         {
             if (reader != null)

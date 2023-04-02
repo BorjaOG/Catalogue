@@ -40,8 +40,9 @@ namespace Catalogo
             try
             {
                 if (article == null)
+                {
                     article = new Articulo();
-
+                }
                 article.Codigo = (string)txtCodigo.Text;
                 article.Nombre = (string)txtNombre.Text;
                 article.Descripcion = (string)txtDescripcion.Text;
@@ -54,19 +55,16 @@ namespace Catalogo
                 {
                 negocio.modificar(article);
                 MessageBox.Show("Modification succesfull");
-                }
-                
+                }               
                 else
                 {
                     negocio.agregar(article);
                     MessageBox.Show("Succefully added");
-                }
-                
+                }               
                 Close();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
@@ -92,17 +90,14 @@ namespace Catalogo
                     txtUrl.Text = article.UrlImagen;
                     loadImage(article.UrlImagen);
                     cmbCategoria.SelectedValue = article.Categoria.Id;
-                    cmbMarca.SelectedValue = article.Marca.Id;
-                    
+                    cmbMarca.SelectedValue = article.Marca.Id;                   
                 }
             }
             catch (Exception ex)
             {
                MessageBox.Show(ex.ToString());
             }
-
         }
-
         private void txtUrl_Leave(object sender, EventArgs e)
         {
             loadImage(txtUrl.Text);

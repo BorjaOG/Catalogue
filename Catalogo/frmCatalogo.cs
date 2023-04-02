@@ -23,13 +23,10 @@ namespace Catalogo
         {
             InitializeComponent();
         }
-
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
-            cargar();
-           
+            cargar();        
         }
-
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvArticulos.CurrentRow != null)
@@ -38,7 +35,6 @@ namespace Catalogo
                 loadImage(selected.UrlImagen);
             }
         }
-
         private void cargar()
         {
                 ArticuloNegocio negocio = new ArticuloNegocio();
@@ -55,7 +51,6 @@ namespace Catalogo
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void loadImage(string image)
         {
             try
@@ -65,22 +60,16 @@ namespace Catalogo
             catch (Exception ex)
             {
                 pcbArticulo.Load("https://worldwellnessgroup.org.au/wp-content/uploads/2020/07/placeholder.png");
-            }
-           
+            }          
         }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
             cargar();
         }
-
-
         private void btnModify_Click(object sender, EventArgs e)
-        {
-
-            
+        {   
             {
                 if (dgvArticulos.CurrentRow != null)
                 {
@@ -92,7 +81,6 @@ namespace Catalogo
                     
                 }
             }
-
         }
         private void btnClose_Click(object sender, EventArgs e)
         {

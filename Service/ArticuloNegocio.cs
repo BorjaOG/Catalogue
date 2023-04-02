@@ -23,12 +23,10 @@ namespace Catalogo
 
             try
             {
-                // Query //
                 conection.ConnectionString = "server=DESKTOP-6NCI6TM\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comand.CommandType = System.Data.CommandType.Text;
                 comand.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, ImagenUrl, A.Precio, A.IdMarca, A.IdCategoria, M.Id, C.Id\r\nFrom ARTICULOS A, CATEGORIAS C, MARCAS M \r\nwhere C.Id = A.IdCategoria and M.id = A.IdMarca";
                 comand.Connection = conection;
-
                 conection.Open();
                 reader = comand.ExecuteReader();
 
@@ -53,19 +51,16 @@ namespace Catalogo
                     aux.Categoria.Descripcion = (string)reader["Categoria"];
 
                     lista.Add(aux);
-
                 }
                 conection.Close();
                 return lista;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
         }
-        //ADD//
         public void agregar(Articulo nuevo)
         {
             DataAcces data = new DataAcces();
@@ -84,7 +79,6 @@ namespace Catalogo
                 data.setearParametro("@IdMarca", nuevo.Marca.Id);
                 data.setearParametro("@IdCategoria", nuevo.Categoria.Id);
                
-
                 data.ejecutarAccion();
             }
             catch (Exception ex)
@@ -96,8 +90,6 @@ namespace Catalogo
                 data.cerrarConection();
             }
         }
-
-
         public void modificar(Articulo article)
         {
                 DataAcces data = new DataAcces();

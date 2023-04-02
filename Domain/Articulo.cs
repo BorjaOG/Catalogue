@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace Domain
 {
      public class Articulo
-
     {
         public int Id { get; set; }
         [DisplayName("Code")]
