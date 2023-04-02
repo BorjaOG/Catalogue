@@ -27,6 +27,7 @@ namespace Catalogo
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
+           
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -75,5 +76,7 @@ namespace Catalogo
         {
             Close();
         }
+
+
     }
 }

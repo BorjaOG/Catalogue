@@ -40,6 +40,8 @@ namespace Catalogo
                         aux.Nombre = (string)reader["Nombre"];
                     if (!(reader["Descripcion"] is DBNull))
                         aux.Descripcion = (string)reader["Descripcion"];
+                    if (!(reader["ImagenUrl"] is DBNull))
+                        aux.UrlImagen = (string)reader["ImagenUrl"];
 
                     //validar DBnull de precio//
 
