@@ -31,8 +31,17 @@
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.pcbArticulo = new System.Windows.Forms.PictureBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.lblcampo = new System.Windows.Forms.Label();
+            this.lblCriterio = new System.Windows.Forms.Label();
+            this.lblavanzado = new System.Windows.Forms.Label();
+            this.cmbCampo = new System.Windows.Forms.ComboBox();
+            this.cmbCriterio = new System.Windows.Forms.ComboBox();
+            this.cmbAvanzado = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbArticulo)).BeginInit();
             this.SuspendLayout();
@@ -41,7 +50,7 @@
             // 
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvArticulos.Location = new System.Drawing.Point(38, 40);
+            this.dgvArticulos.Location = new System.Drawing.Point(38, 62);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -51,7 +60,7 @@
             // 
             // pcbArticulo
             // 
-            this.pcbArticulo.Location = new System.Drawing.Point(698, 40);
+            this.pcbArticulo.Location = new System.Drawing.Point(698, 62);
             this.pcbArticulo.Name = "pcbArticulo";
             this.pcbArticulo.Size = new System.Drawing.Size(242, 263);
             this.pcbArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -69,21 +78,10 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(793, 331);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(147, 34);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // btnModify
             // 
             this.btnModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModify.Location = new System.Drawing.Point(239, 331);
+            this.btnModify.Location = new System.Drawing.Point(232, 331);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(151, 34);
             this.btnModify.TabIndex = 2;
@@ -91,13 +89,119 @@
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(541, 331);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(140, 34);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Delete article";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // lblFilter
+            // 
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilter.Location = new System.Drawing.Point(38, 28);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(138, 20);
+            this.lblFilter.TabIndex = 4;
+            this.lblFilter.Text = "Search by name";
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Location = new System.Drawing.Point(182, 30);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(277, 20);
+            this.txtFilter.TabIndex = 5;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilter.Location = new System.Drawing.Point(847, 409);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(91, 28);
+            this.btnFilter.TabIndex = 6;
+            this.btnFilter.Text = "Search";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // lblcampo
+            // 
+            this.lblcampo.AutoSize = true;
+            this.lblcampo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcampo.Location = new System.Drawing.Point(38, 417);
+            this.lblcampo.Name = "lblcampo";
+            this.lblcampo.Size = new System.Drawing.Size(70, 20);
+            this.lblcampo.TabIndex = 7;
+            this.lblcampo.Text = "Campo:";
+            // 
+            // lblCriterio
+            // 
+            this.lblCriterio.AutoSize = true;
+            this.lblCriterio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCriterio.Location = new System.Drawing.Point(241, 416);
+            this.lblCriterio.Name = "lblCriterio";
+            this.lblCriterio.Size = new System.Drawing.Size(72, 20);
+            this.lblCriterio.TabIndex = 9;
+            this.lblCriterio.Text = "Criterio:";
+            // 
+            // lblavanzado
+            // 
+            this.lblavanzado.AutoSize = true;
+            this.lblavanzado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblavanzado.Location = new System.Drawing.Point(446, 415);
+            this.lblavanzado.Name = "lblavanzado";
+            this.lblavanzado.Size = new System.Drawing.Size(93, 20);
+            this.lblavanzado.TabIndex = 11;
+            this.lblavanzado.Text = "Avanzado:";
+            // 
+            // cmbCampo
+            // 
+            this.cmbCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCampo.FormattingEnabled = true;
+            this.cmbCampo.Location = new System.Drawing.Point(114, 415);
+            this.cmbCampo.Name = "cmbCampo";
+            this.cmbCampo.Size = new System.Drawing.Size(121, 21);
+            this.cmbCampo.TabIndex = 12;
+            this.cmbCampo.SelectedIndexChanged += new System.EventHandler(this.cmbCampo_SelectedIndexChanged);
+            // 
+            // cmbCriterio
+            // 
+            this.cmbCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCriterio.FormattingEnabled = true;
+            this.cmbCriterio.Location = new System.Drawing.Point(319, 415);
+            this.cmbCriterio.Name = "cmbCriterio";
+            this.cmbCriterio.Size = new System.Drawing.Size(121, 21);
+            this.cmbCriterio.TabIndex = 13;
+            // 
+            // cmbAvanzado
+            // 
+            this.cmbAvanzado.Location = new System.Drawing.Point(546, 416);
+            this.cmbAvanzado.Name = "cmbAvanzado";
+            this.cmbAvanzado.Size = new System.Drawing.Size(122, 20);
+            this.cmbAvanzado.TabIndex = 14;
+            // 
             // frmCatalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 386);
+            this.ClientSize = new System.Drawing.Size(961, 453);
+            this.Controls.Add(this.cmbAvanzado);
+            this.Controls.Add(this.cmbCriterio);
+            this.Controls.Add(this.cmbCampo);
+            this.Controls.Add(this.lblavanzado);
+            this.Controls.Add(this.lblCriterio);
+            this.Controls.Add(this.lblcampo);
+            this.Controls.Add(this.btnFilter);
+            this.Controls.Add(this.txtFilter);
+            this.Controls.Add(this.lblFilter);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnModify);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pcbArticulo);
             this.Controls.Add(this.dgvArticulos);
@@ -108,6 +212,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbArticulo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -116,8 +221,17 @@
         private System.Windows.Forms.DataGridView dgvArticulos;
         private System.Windows.Forms.PictureBox pcbArticulo;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnModify;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.TextBox txtFilter;
+        private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.Label lblcampo;
+        private System.Windows.Forms.Label lblCriterio;
+        private System.Windows.Forms.Label lblavanzado;
+        private System.Windows.Forms.ComboBox cmbCampo;
+        private System.Windows.Forms.ComboBox cmbCriterio;
+        private System.Windows.Forms.TextBox cmbAvanzado;
     }
 }
 
