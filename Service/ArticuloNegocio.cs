@@ -133,6 +133,8 @@ namespace Catalogo
             }
         }
 
+        //Filter advanced//
+
         public List<Articulo> filtrar(string campo, string criterio, string avanzado)
         {
             List<Articulo> lista = new List<Articulo>();

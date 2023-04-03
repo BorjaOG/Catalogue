@@ -158,6 +158,7 @@ namespace Catalogo
             hidecolumns();
         }
 
+        //Quick Filter//
         private void cmbCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             string option = cmbCampo.SelectedItem.ToString();
