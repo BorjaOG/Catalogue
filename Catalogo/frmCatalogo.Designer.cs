@@ -117,7 +117,6 @@
             this.txtFilter.Size = new System.Drawing.Size(277, 20);
             this.txtFilter.TabIndex = 5;
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
-            this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
             // 
             // btnFilter
             // 

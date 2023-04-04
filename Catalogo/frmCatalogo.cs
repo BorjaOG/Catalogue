@@ -131,12 +131,6 @@ namespace Catalogo
             {
                 MessageBox.Show(ex.ToString());
             }
-
-        }
-
-        private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
