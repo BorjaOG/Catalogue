@@ -45,6 +45,10 @@
             this.lblUrl = new System.Windows.Forms.Label();
             this.txtUrl = new System.Windows.Forms.TextBox();
             this.pcbArticulo = new System.Windows.Forms.PictureBox();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pcbArticulo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,10 +106,10 @@
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(40, 246);
+            this.btnAceptar.Location = new System.Drawing.Point(40, 260);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(111, 33);
-            this.btnAceptar.TabIndex = 7;
+            this.btnAceptar.TabIndex = 8;
             this.btnAceptar.Text = "Confirm";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -113,10 +117,10 @@
             // btnCancelar
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(219, 246);
+            this.btnCancelar.Location = new System.Drawing.Point(219, 260);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(111, 33);
-            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancel";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -128,7 +132,7 @@
             this.cmbMarca.Location = new System.Drawing.Point(179, 169);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(153, 21);
-            this.cmbMarca.TabIndex = 4;
+            this.cmbMarca.TabIndex = 6;
             // 
             // cmbCategoria
             // 
@@ -137,7 +141,7 @@
             this.cmbCategoria.Location = new System.Drawing.Point(179, 196);
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(153, 21);
-            this.cmbCategoria.TabIndex = 5;
+            this.cmbCategoria.TabIndex = 7;
             // 
             // lblMarca
             // 
@@ -174,7 +178,7 @@
             this.txtPrice.Location = new System.Drawing.Point(179, 138);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(153, 20);
-            this.txtPrice.TabIndex = 6;
+            this.txtPrice.TabIndex = 5;
             // 
             // lblUrl
             // 
@@ -196,18 +200,66 @@
             // 
             // pcbArticulo
             // 
-            this.pcbArticulo.Location = new System.Drawing.Point(386, 33);
+            this.pcbArticulo.Location = new System.Drawing.Point(438, 33);
             this.pcbArticulo.Name = "pcbArticulo";
-            this.pcbArticulo.Size = new System.Drawing.Size(213, 181);
+            this.pcbArticulo.Size = new System.Drawing.Size(224, 199);
             this.pcbArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbArticulo.TabIndex = 6;
             this.pcbArticulo.TabStop = false;
+            // 
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarImagen.Location = new System.Drawing.Point(346, 106);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(75, 27);
+            this.btnAgregarImagen.TabIndex = 4;
+            this.btnAgregarImagen.Text = "+";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label1.Location = new System.Drawing.Point(25, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(16, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "*";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label2.Location = new System.Drawing.Point(25, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(16, 20);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "*";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label3.Location = new System.Drawing.Point(25, 138);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(16, 20);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "*";
             // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 298);
+            this.ClientSize = new System.Drawing.Size(683, 317);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.pcbArticulo);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.cmbCategoria);
@@ -254,5 +306,9 @@
         private System.Windows.Forms.Label lblUrl;
         private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.PictureBox pcbArticulo;
+        private System.Windows.Forms.Button btnAgregarImagen;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

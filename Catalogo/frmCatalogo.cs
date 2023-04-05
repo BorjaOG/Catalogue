@@ -10,9 +10,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.IO;
 using Domain;
-
-
-
+using System.Runtime.Remoting.Messaging;
 
 namespace Catalogo
 {
@@ -116,12 +114,54 @@ namespace Catalogo
                 MessageBox.Show(ex.ToString());
             }
         }
+        private bool validarFiltro()
+        {
+            if (cmbCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Select a field please");
+                return true;
+            }
+            if(cmbCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Select a column please");
+                return true;
+            }
+            if (cmbCampo.SelectedItem.ToString() == "Price")
+            {
+                if (string.IsNullOrEmpty(cmbAvanzado.Text))
+                {
+                    MessageBox.Show("Insert a Price please");
+                    return true;
+                }
+               if (!(numbersOnly(cmbAvanzado.Text))) 
+                { 
+                    MessageBox.Show("Number Only in this box please");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool numbersOnly(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
+        }
+       
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                if (validarFiltro())
+                    return;
+
                 string campo = cmbCampo.SelectedItem.ToString();
                 string criterio = cmbCriterio.SelectedItem.ToString();
                 string avanzado = cmbAvanzado.Text;
@@ -138,7 +178,7 @@ namespace Catalogo
             List<Articulo> listafiltrada;
             string filter = txtFilter.Text;
 
-            if (filter != "")
+            if (filter.Length >= 2)
             {
                 listafiltrada = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filter.ToUpper()));
             }
@@ -169,6 +209,24 @@ namespace Catalogo
                 cmbCriterio.Items.Add("Start with");
                 cmbCriterio.Items.Add("End with");
                 cmbCriterio.Items.Add("Contains");
+            }
+        }
+
+        private void btnDetail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(dgvArticulos.CurrentRow != null)
+                {
+                    Articulo selected;
+                    selected = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                    frmDetail detail = new frmDetail(selected);
+                    detail.ShowDialog();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Select an article to see details please");
             }
         }
     }

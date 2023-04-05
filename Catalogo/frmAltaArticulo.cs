@@ -11,12 +11,16 @@ using Domain;
 using Catalogo;
 using Service;
 using static System.Net.Mime.MediaTypeNames;
+using System.IO;
+using System.Configuration;
 
 namespace Catalogo
 {
     public partial class frmAltaArticulo : Form
     {
         private Articulo article = null;
+        private OpenFileDialog archivo = null;
+
         public frmAltaArticulo()
         {
             InitializeComponent();
@@ -27,12 +31,10 @@ namespace Catalogo
             this.article = article;
             Text = "Modify Article";
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {            
            Close();
         }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {          
             ArticuloNegocio negocio = new ArticuloNegocio();
@@ -43,6 +45,7 @@ namespace Catalogo
                 {
                     article = new Articulo();
                 }
+                
                 article.Codigo = (string)txtCodigo.Text;
                 article.Nombre = (string)txtNombre.Text;
                 article.Descripcion = (string)txtDescripcion.Text;
@@ -60,7 +63,11 @@ namespace Catalogo
                 {
                     negocio.agregar(article);
                     MessageBox.Show("Succefully added");
-                }               
+                }
+
+                if (archivo != null && !(txtUrl.Text.ToUpper().Contains("HTTP")))
+               File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+             
                 Close();
             }
             catch (Exception ex)
@@ -113,6 +120,16 @@ namespace Catalogo
                 pcbArticulo.Load("https://worldwellnessgroup.org.au/wp-content/uploads/2020/07/placeholder.png");
             }
 
+        }
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+           OpenFileDialog archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg;|png|*.png";
+            if(archivo.ShowDialog()== DialogResult.OK)
+            {
+                txtUrl.Text = archivo.FileName;
+                loadImage(archivo.FileName);
+            }           
         }
     }
 }

@@ -68,7 +68,7 @@ namespace Catalogo
 
             try
             {
-                string consulta = "insert into ARTICULOS (Id,Codigo, Nombre, Descripcion, ImagenUrl, Precio, IdMarca, IdCategoria)" +
+                string consulta = "insert into ARTICULOS (Codigo, Nombre, Descripcion, ImagenUrl, Precio, IdMarca, IdCategoria)" +
                                   "values (@Codigo, @Nombre, @Descripcion, @UrlImagen, @Precio, @IdMarca, @IdCategoria)";
 
                 data.setearConsulta(consulta);
@@ -143,7 +143,6 @@ namespace Catalogo
             {
                 string consulta = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Categoria, ImagenUrl, A.Precio, A.IdMarca, A.IdCategoria, M.Id, C.Id\r\nFrom ARTICULOS A, CATEGORIAS C, MARCAS M \r\nwhere C.Id = A.IdCategoria and M.id = A.IdMarca and ";
 
-
                 switch (campo)
                 {
                     case "Price":
@@ -217,7 +216,6 @@ namespace Catalogo
                 }
                 return lista;
             }
-
             catch (Exception ex)
             {
 
