@@ -151,9 +151,7 @@ namespace Catalogo
                     return false;
             }
             return true;
-        }
-       
-
+        }       
         private void btnFilter_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();

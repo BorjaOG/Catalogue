@@ -21,6 +21,10 @@ namespace Catalogo
         public frmDetail(Articulo selected)
         {
             InitializeComponent();
+            if(selected == null)
+            {
+                throw new ArgumentNullException(nameof(selected));
+            }
             this.selected = selected;
             Text = "Article details";
         }
@@ -40,16 +44,21 @@ namespace Catalogo
         private void frmDetail_Load(object sender, EventArgs e)
         {
             
-
             try
             {
                 loadImage(selected.UrlImagen);
                 txtCodigo.Text = selected.Codigo;
+                txtCodigo.ReadOnly = true;
                 txtNombre.Text = selected.Nombre;
+                txtNombre.ReadOnly = true;
                 txtDescripcion.Text = selected.Descripcion;
+                txtDescripcion.ReadOnly = true;
                 txtMarca.Text = selected.Marca.ToString();
+                txtMarca.ReadOnly = true;
                 txtCategoria.Text = selected.Categoria.ToString();
+                txtCategoria.ReadOnly = true;
                 txtPrice.Text = selected.Precio.ToString();
+                txtPrice.ReadOnly = true;
 
             }
             catch (Exception ex)

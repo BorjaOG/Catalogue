@@ -39,6 +39,28 @@ namespace Catalogo
         {          
             ArticuloNegocio negocio = new ArticuloNegocio();
 
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text))
+            {
+                MessageBox.Show("You must write a Code");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("You must write a Name");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrice.Text))
+            {
+                MessageBox.Show("You must write a Price");
+                return;
+            }
+            decimal price;
+
+            if(!decimal.TryParse(txtPrice.Text, out price))
+            {
+                MessageBox.Show("Price must be in a correct format");
+                return;
+            }
             try
             {
                 if (article == null)
@@ -50,7 +72,7 @@ namespace Catalogo
                 article.Nombre = (string)txtNombre.Text;
                 article.Descripcion = (string)txtDescripcion.Text;
                 article.UrlImagen = (string)txtUrl.Text;
-                article.Precio = decimal.Parse(txtPrice.Text);
+                article.Precio = price;
                 article.Marca = (Marca)cmbMarca.SelectedItem;
                 article.Categoria = (Categoria)cmbCategoria.SelectedItem;
 
@@ -75,6 +97,15 @@ namespace Catalogo
                 MessageBox.Show(ex.ToString());
             }
         }
+        private bool numbersOnly(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
+        }
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
             MarcaNegocio marcaNegocio = new MarcaNegocio();
@@ -92,7 +123,7 @@ namespace Catalogo
                 {
                     txtCodigo.Text = article.Codigo;
                     txtNombre.Text = article.Nombre;
-                    txtDescripcion.Text = article.Descripcion;
+                    txtDescripcion.Text = article.Descripcion;                   
                     txtPrice.Text = article.Precio.ToString();
                     txtUrl.Text = article.UrlImagen;
                     loadImage(article.UrlImagen);
@@ -131,5 +162,6 @@ namespace Catalogo
                 loadImage(archivo.FileName);
             }           
         }
+
     }
 }
