@@ -142,7 +142,7 @@ namespace Catalogo
 
             return false;
         }
-
+        // Validation Numbers//
         private bool numbersOnly(string cadena)
         {
             foreach (char caracter in cadena)
